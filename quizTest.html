@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>QUnit basic example</title>
+		<link rel="stylesheet" href="stylesheets/qunit-1.10.0.css">
+		<script src="scripts/libraries/qunit-1.10.0.js"></script>
+		<script data-main="scripts/test" src="scripts/libraries/require.js"></script>
+	</head>
+	<body>
+		<div id="qunit"></div>
+		<div id="qunit-fixture"></div>
+		<script type="text/x-underscore-template" id="index_template">
+			<div id='application_logo'>
+			<img src="./images/quiz-logo_A.png" border="0" alt="Quiz Application"/>
+			</div>
+			<div id='session_info' align="center">
+			<ul>
+			<li>
+			<label for="user_name">Enter your name</label>
+			</li>
+			<li>
+			<input type='text' class="text_content" required="true" name="user_name" id="user_name" autofocus="true"/>
+			</li>
+			<li>
+			<button type='button' accesskey="S" id='start'>
+			Start Quiz
+			</button>
+			</li>
+			<li>
+			<button type='button' accesskey="S" id='help'>
+			Help
+			</button>
+			</li>
+			</ul>
+			</div>
+			</div>
+		</script>
+		<script type="text/x-underscore-template" id="quiz_template">
+			<div id='header'>
+			<div class='question_idx'>
+			Questions Listing :<%=count%>/<%=recordCount%>
+			</div>
+			<div class='timer'>
+			<img src='images/timer_start.png' id='timer_image' alt="Time left" width="50" height="50"/>
+			<br/>
+			<span class='time_left'>00:00</span>
+			</div>
+			<div class='weightage'>
+			Weight : <%=weight%>
+			</div>
+			</div>
+			<div id='question_info' align="center">
+			<div class="question">
+			<%=question%>
+			</div>
+			<ul class="option_list">
+			<% if(type == 'fillin') { %>
+			<img src='<%=image%>' alt='Loading image...' width="50" height="50"/>
+			<br/>
+			<br/>
+			<input type='text' class='fillin' placeholder="Enter your answer here..."/>
+			<% } else { %>
+			<% _.each(answers, function(idx) { %>
+			<li>
+			<a href='#quiz/<%=count%>/<%=idx%>' id='answer_<%=idx%>' class='options'><%= idx %></a>
+			</li>
+			<% }) }; %>
+			</ul>
+			</div>
+			<div id='footer'>
+			<div class='quit'>
+			<a href='#home'><img src='./images/arrow_left.png' border="0" class='align'>&#160;Quit</a>
+			</div>
+			<div class='next'>
+			<button type='button' id='next_question'>
+			Next
+			</button>
+			<button type='button' id='finish'>
+			Finish
+			</button>
+			</div>
+			<div class='pass'>
+			<a href='#skip/<%=count%>/-1/<%=weight%>'>Pass&#160;<img src='./images/arrow_right.png'  class='align' border="0"></a>
+			</div>
+			</div>
+		</script>
+		<script type="text/x-underscore-template" id="score_template">
+			<div id='application_logo'>
+			<img src="./images/quiz-logo_A.png" border="0" alt="Quiz Application"/>
+			<div class='app_sub_title'>
+			Results
+			</div>
+			</div>
+			<div id='result_info' align="center">
+			<div class='result_summary'>
+			<div class='wish_text'>
+			<% if(score > 10) {%>
+			Congratulations
+			<% } else { %>
+			Oops !! Try Again !!
+			<%} %>
+			</div>
+			<div class='total_score'>
+			Your Score is
+			<br/>
+			<%=score%>
+			</div>
+			</div>
+			<div class="question_score">
+			<%=attempted%>/<%=totalQuestions%>
+			</div>
+			<br/>
+			<button type='button' accesskey="S" class="restart">
+			Play Again
+			</button>
+			<button type='button' accesskey="S" class="newgame">
+			New Game
+			</button>
+			</div>
+		</script>
+		<iframe src='about:blank' id='testframe' width='900' height='200' frameborder="0" style='border:1px solid green;display:none'></iframe>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<div id='application_logo'>
+	<img src="./images/quiz-logo_A.png" border="0" alt="Quiz Application"/>
+	<div class='app_sub_title'>
+		Results
+	</div>
+</div>
+<div id='result_info' align="center">
+	<div class='result_summary'>
+		<div class='wish_text'>
+			<% if(score > 10) {%>
+			Congratulations
+			<% } else { %>
+			Oops !! Try Again !!
+			<%} %>
+		</div>
+		<div class='total_score'>
+			Your Score is
+			<br/>
+			<%=score%>
+		</div>
+	</div>
+	<div class="question_score">
+		<%=attempted%>/<%=totalQuestions%>
+	</div>
+	<br/>
+	<button type='button' accesskey="S" class="restart">
+		Play Again
+	</button>
+	<button type='button' accesskey="S" class="newgame">
+		New Game
+	</button>
+</div>

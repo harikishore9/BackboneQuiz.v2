@@ -1,0 +1,47 @@
+<div id='header'>
+	<div class='question_idx'>
+		Questions Listing :<%=count%>/<%=recordCount%>
+	</div>
+	<div class='timer'>
+		<img src='images/timer_start.png' id='timer_image' alt="Time left" width="50" height="50"/>
+		<br/>
+		<span class='time_left'>00:00</span>
+	</div>
+	<div class='weightage'>
+		Weight : <%=weight%>
+	</div>
+</div>
+<div id='question_info' align="center">
+	<div class="question">
+		<%=question%>
+	</div>
+	<ul class="option_list">
+		<% if(type == 'fillin') { %>
+		<img src='<%=image%>' alt='Loading image...' width="50" height="50"/>
+		<br/>
+		<br/>
+		<input type='text' class='fillin' placeholder="Enter your answer here..."/>
+		<% } else { %>
+		<% _.each(answers, function(idx) { %>
+		<li>
+			<a href='#quiz/<%=count%>/<%=idx%>' id='answer_<%=idx%>' class='options'><%= idx %></a>
+		</li>
+		<% }) }; %>
+	</ul>
+</div>
+<div id='footer'>
+	<div class='quit'>
+		<a href='#home'><img src='./images/arrow_left.png' border="0" class='align'>&#160;Quit</a>
+	</div>
+	<div class='next'>
+		<button type='button' id='next_question'>
+			Next
+		</button>
+		<button type='button' id='finish'>
+			Finish
+		</button>
+	</div>
+	<div class='pass'>
+		<a href='#skip/<%=count%>/-1/<%=weight%>'>Pass&#160;<img src='./images/arrow_right.png'  class='align' border="0"></a>
+	</div>
+</div>
